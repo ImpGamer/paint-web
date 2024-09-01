@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint JS</title>
+</head>
+<style>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #292929;
+    }
+    h1 {
+        color: #fce300;
+        font-size: 12px;
+        font-weight: 600;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+
+        img {
+            width: 16px;
+            height: auto;
+        }
+    }
+    canvas {
+        background-color: white;
+    }
+    header {
+        grid-area: header;
+        background: silver;
+        padding: 2px;
+
+        button {
+            border: 0;
+            background: transparent;
+
+            &:hover {
+                box-shadow: 1px 1px black,
+                inset -1px -1px gray,
+                inset 1px 1px white;
+            }
+        }
+    }
+    main {
+        grid-area: main;
+        padding: 16px;
+    }
+    footer {
+        background: silver;
+        padding: 4px;
+        grid-area: footer;
+    }
+    #container {
+        border: 1px solid #808080;
+        display: grid;
+        grid-template-areas: 
+        "header header header"
+        "aside main main"
+        "footer footer footer";    
+    }
+    aside {
+        background: silver;
+        grid-area: aside;
+        width: 52px;
+        padding-top: 2px;
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1px;
+            justify-content: center;
+        }
+
+        button {
+            width: 24px;
+            height: 24px;
+            background: #bdbdbd url('./images/pencil_draw.svg') no-repeat center;
+            background-size: 70%;
+            background-color: #bdbdbd;
+            border: 1.5px solid #000;
+
+            border-top-color: #eee;
+            border-left-color:#eee ;
+            image-rendering: pixelated;
+            cursor: pointer;
+
+            &.active {
+                background-color: #eee;
+                border-color: #000;
+                border-right-color: #eee;
+                border-bottom-color: #eee;
+            }
+        }
+    }
+
+    #erase-btn {
+        background-image: url('./images/eraser.svg');
+    }
+    #rectangle-btn {
+        background-image: url('./images/rectangule.svg');
+    }
+    #elipse-btn {
+        background-image: url('./images/elipse.svg');
+    }
+    #picker-btn {
+        background-image: url('./images/color_picker.svg');
+    }
+    #clear-btn {
+        background-image: url('./images/trash.svg');
+    }
+
+
+</style>
+<body>
+    <h1>
+        <img src="./images/paint_logo.png" alt="Paint Logo">
+        Paint.js
+    </h1>
+    <div id="container">
+        <header>
+            <button>File</button>
+            <button>Edit</button>
+            <button>View</button>
+            <button>Options</button>
+            <button>Help</button>
+            <button>Image</button>
+        </header>
+        <aside>
+            <nav>
+                <button class="active" id="draw-btn" title="pincel"></button>
+                <button id="erase-btn" title="borrar"></button>
+                <button id="rectangle-btn" title="rectangulo"></button>
+                <button id="elipse-btn" title="elipse"></button>
+                <button id="picker-btn" title="seleccionar"></button>
+                <button id="clear-btn" title="limpiar"></button>
+            </nav>
+        </aside>
+
+        <main>
+            <canvas id="canvas" width="300" height="200"></canvas>
+        </main>
+        <footer>
+            <input type="color" id="color-picker">
+        </footer>
+    </div>
+
+    <script src="draw.js"></script>
+</body>
+</html>
